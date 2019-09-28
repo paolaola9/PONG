@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class PLAYER : MonoBehaviour
 {
-    Public KeyCode up;
-    Public KeyCode down;
+    public KeyCode up;
+    public KeyCode down;
 
     float spedd;
+    float finalSpeed;
 
     // Start is called before the first frame update
     void Start() {
@@ -16,11 +17,30 @@ public class PLAYER : MonoBehaviour
 
     // Update is called once per frame
     void Update() {
-        if(Input.Getkey(up)){
-            transform.Translate(0,spedd,0);
-         }
-         if (Input.GetKey(down)){
-          transform.Translate(0,-spedd,0);
+        if(Input.GetKey(up)){
+            if (transform.localPosition.y > 4){
+                finalSpeed = 0;
+
+            } else{
+                finalSpeed = spedd;
+            }
+            transform.Translate(0,finalSpeed,0);
+        }
+
+
+        if (Input.GetKey(down)){
+
+            if (transform.localPosition.y < -4)
+            {
+                finalSpeed = 0;
+
+            }
+            else
+            {
+                finalSpeed = spedd;
+            }
+
+        transform.Translate(0,-finalSpeed,0);
          }
         }
       }
